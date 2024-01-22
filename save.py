@@ -52,7 +52,7 @@ def main():
     
     # Pushing files to remote
     try:
-        run("git add world_data/", shell=True)
+        run("git add saves/", shell=True)
         run(f'git commit -m "World save: {datetime.now()}"', shell=True)
         run("git push", shell=True)
         print(f"{COLORS.okgreen}Local World data saved to GitHub{COLORS.endc}")
