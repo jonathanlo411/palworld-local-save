@@ -37,13 +37,13 @@ def main():
     # Copying files to local dir
     if (args.name):
         local_save = os.path.join(local_save_path, args.name)
-        copytree(local_save, f'./saves/{args.name}')
+        copytree(local_save, f'./saves/{args.name}-{datetime.now().timestamp()}')
     elif (args.all):
         local_saves = os.listdir(local_save_path)
         local_saves.pop()
         for save in local_saves:
             local_save = os.path.join(local_save_path, save)
-            copytree(local_save, f'./saves/{save}')
+            copytree(local_save, f'./saves/{save}-{datetime.now().timestamp()}')
     else:
         local_saves = os.listdir(local_save_path)
         local_saves.pop()
@@ -55,8 +55,9 @@ def main():
         run("git add world_data/", shell=True)
         run(f'git commit -m "World save: {datetime.now()}"', shell=True)
         run("git push", shell=True)
+        print(f"{COLORS.okgreen}Local World data saved to GitHub{COLORS.endc}")
     except Exception as e:
-        print(f"Error occured when pushing.\n{e}")
+        print(f"{COLORS.fail}Error occured when pushing:{COLORS.endc}\n{e}")
     
 
 # --- UTILITY ---
